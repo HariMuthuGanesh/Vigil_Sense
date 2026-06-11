@@ -13,7 +13,8 @@
 
 The system interfaces with a **TI IWR6843AOP 60 GHz mmWave radar** over USB/UART, processes raw TLV binary frames in real-time, and displays multi-target tracking results in an interactive 3D industrial floor plan with animated hazard alerts.
 
-📂 **Main application file:** [`Vigle_Sense.py`](Vigle_Sense.py)
+📂 **Main application file:** [`Vigle_Sense_v2.py`](Vigle_Sense_v2.py) (Integrated and Structured version)
+📄 **Original version:** [`Vigle_Sense.py`](Vigle_Sense.py)
 
 ---
 
@@ -111,8 +112,10 @@ pip install -r requirements.txt
 ## ▶️ How to Run
 
 ```bash
-python Vigle_Sense.py
+python Vigle_Sense_v2.py
 ```
+
+*Note: The original, standalone version can still be run with `python Vigle_Sense.py`.*
 
 The application opens in **demo mode** immediately (animated synthetic persons visible in Tab 2) so you can explore the UI without hardware.
 
@@ -142,17 +145,32 @@ The application opens in **demo mode** immediately (animated synthetic persons v
 
 ```
 Vigle_Sense/
-├── Vigle_Sense.py        # Main application (original, standalone)
-├── config.py             # All tunable constants in one place
-├── logger.py             # Rotating file + console logging
-├── data_logger.py        # Per-frame CSV data export
-├── alerts.py             # Cross-platform audio alert manager
-├── settings.py           # JSON settings persistence
-├── stats_tracker.py      # Rolling FPS / point-count / track stats
-├── port_utils.py         # Serial port enumeration helpers
-├── requirements.txt      # Python dependencies
-├── CHANGELOG.md          # Version history
-└── README.md             # This file
+├── Vigle_Sense.py         # Original unmodified application
+├── Vigle_Sense_v2.py      # Upgraded application incorporating all packages
+├── config/                # Configuration package
+│   ├── __init__.py
+│   └── config.py
+├── logger/                # Logging package
+│   ├── __init__.py
+│   └── logger.py
+├── alerts/                # Alerts package
+│   ├── __init__.py
+│   └── alerts.py
+├── data_logger/           # Data event logging package
+│   ├── __init__.py
+│   └── data_logger.py
+├── settings/              # User settings persistence package
+│   ├── __init__.py
+│   └── settings.py
+├── stats_tracker/         # Live performance tracking package
+│   ├── __init__.py
+│   └── stats_tracker.py
+└── port_utils/            # Serial port utilities package
+    ├── __init__.py
+    └── port_utils.py
+├── requirements.txt       # Python dependencies
+├── CHANGELOG.md           # Version history
+└── README.md              # This file
 ```
 
 ---
