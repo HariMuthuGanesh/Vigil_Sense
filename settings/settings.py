@@ -1,27 +1,7 @@
 """
 settings.py — Persist and restore user preferences for Vigle_Sense.
 
-Saves the operator's last-used COM ports, zone radii, chamber bounds,
-and machine proximity radius to ``settings.json`` in the project root.
-On next launch the values are pre-filled instead of using hard-coded
-defaults, saving re-configuration time each session.
-
-Usage
------
-    from settings import Settings
-
-    s = Settings()
-    s.load()                  # reads settings.json (silent if missing)
-
-    # Read a value with a fallback default:
-    cli_port = s.get("cli_port", "")
-
-    # Write values:
-    s.set("cli_port", "COM3")
-    s.set("data_port", "COM4")
-    s.set("safe_max",  3.0)
-
-    s.save()                  # writes settings.json
+Saves the operator's settings to ``settings.json`` in the project root.
 """
 
 import json
@@ -30,7 +10,14 @@ from logger import get_logger
 
 log = get_logger(__name__)
 
-_SETTINGS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "settings.json")
+# Settings file path resolution - resolves to project root when nested
+_my_dir = os.path.dirname(os.path.abspath(__file__))
+if os.path.basename(_my_dir) == "settings":
+    _root_dir = os.path.dirname(_my_dir)
+else:
+    _root_dir = _my_dir
+
+_SETTINGS_FILE = os.path.join(_root_dir, "settings.json")
 
 # ── Defaults (mirror the hard-coded values in Vigle_Sense.py) ───
 _DEFAULTS: dict = {
@@ -70,8 +57,7 @@ class Settings:
     """
     Thin wrapper around a dictionary backed by a JSON file.
 
-    All keys are defined in ``_DEFAULTS``; unknown keys are ignored
-    on load so that stale settings files from older versions are safe.
+    All keys are defined in ``_DEFAULTS``; unknown keys are ignored.
     """
 
     def __init__(self, filepath: str = _SETTINGS_FILE):
@@ -80,13 +66,7 @@ class Settings:
 
     # ── Persistence ──────────────────────────────────────────────
     def load(self) -> bool:
-        """
-        Load settings from disk.
-
-        Returns:
-            True  if the file was found and parsed successfully.
-            False if the file does not exist or contains invalid JSON.
-        """
+        """Load settings from disk."""
         if not os.path.exists(self._filepath):
             log.debug("Settings file not found — using defaults: %s", self._filepath)
             return False
@@ -104,12 +84,7 @@ class Settings:
             return False
 
     def save(self) -> bool:
-        """
-        Write current settings to disk as formatted JSON.
-
-        Returns:
-            True  on success, False on OS error.
-        """
+        """Write current settings to disk."""
         try:
             with open(self._filepath, "w", encoding="utf-8") as fh:
                 json.dump(self._data, fh, indent=2)
@@ -125,15 +100,15 @@ class Settings:
         return self._data.get(key, default)
 
     def set(self, key: str, value) -> None:
-        """Set *key* to *value* in the in-memory dictionary."""
+        """Set *key* to *value*."""
         self._data[key] = value
 
     def as_dict(self) -> dict:
-        """Return a shallow copy of the full settings dictionary."""
+        """Return a copy of the settings dictionary."""
         return dict(self._data)
 
     def reset_to_defaults(self) -> None:
-        """Restore all values to the hard-coded defaults."""
+        """Restore all values to defaults."""
         self._data = dict(_DEFAULTS)
         log.info("Settings reset to defaults")
 

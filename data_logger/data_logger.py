@@ -1,30 +1,7 @@
 """
 data_logger.py — Session CSV data logger for Vigle_Sense.
 
-Records every confirmed radar frame to a timestamped CSV file so
-sessions can be analysed offline (e.g. in Excel or pandas).
-
-Usage
------
-    from data_logger import DataLogger
-
-    dl = DataLogger()          # creates session_YYYYMMDD_HHMMSS.csv
-    dl.start()
-
-    # call inside _on_frame_inner for every confirmed frame:
-    dl.log_frame(
-        frame_num   = frame.frame_num,
-        targets     = confirmed,       # list of target dicts
-        persons     = self.persons,    # dict[id -> PersonState]
-        zone_counts = zone_live,       # {"safe": n, "alert": n, "restricted": n}
-        ch_a_breach = ch_a_breach,
-        ch_b_breach = ch_b_breach,
-        mach_a_prox = mach_a_prox,
-        mach_b_prox = mach_b_prox,
-    )
-
-    dl.stop()                  # flushes and closes the file
-    dl.open_in_os()            # open file with the OS default app
+Records confirmed radar frame metrics to a timestamped CSV file.
 """
 
 import csv
@@ -60,10 +37,14 @@ class DataLogger:
         """
         Args:
             output_dir: Directory in which to write the CSV.
-                        Defaults to the project root (next to this file).
+                        Defaults to the project root.
         """
         if output_dir is None:
-            output_dir = os.path.dirname(os.path.abspath(__file__))
+            my_dir = os.path.dirname(os.path.abspath(__file__))
+            if os.path.basename(my_dir) == "data_logger":
+                output_dir = os.path.dirname(my_dir)
+            else:
+                output_dir = my_dir
 
         ts = time.strftime("%Y%m%d_%H%M%S")
         self.filepath = os.path.join(output_dir, f"session_{ts}.csv")
@@ -107,12 +88,7 @@ class DataLogger:
         mach_a_prox: bool,
         mach_b_prox: bool,
     ):
-        """
-        Write one row per confirmed target.
-
-        If a frame has no confirmed targets, nothing is written
-        (keeps the file compact).
-        """
+        """Write one row per confirmed target."""
         if not self._running or not targets:
             return
 

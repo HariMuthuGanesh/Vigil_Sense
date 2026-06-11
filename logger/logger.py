@@ -3,21 +3,20 @@ logger.py — Structured logging for Vigle_Sense.
 
 Sets up a rotating file handler so every session's events are
 persisted to disk, in addition to the UI console output.
-
-Usage (in any module):
-    from logger import get_logger
-    log = get_logger(__name__)
-    log.info("Sensor started")
-    log.warning("No frames for 5 s")
-    log.error("Serial port error: %s", e)
 """
 
 import logging
 import os
 from logging.handlers import RotatingFileHandler
 
-# Log file lives next to this module (i.e. in the project root)
-_LOG_FILE    = os.path.join(os.path.dirname(__file__), "vigle_sense.log")
+# Log file path resolution - resolves to project root when nested
+_my_dir = os.path.dirname(os.path.abspath(__file__))
+if os.path.basename(_my_dir) == "logger":
+    _root_dir = os.path.dirname(_my_dir)
+else:
+    _root_dir = _my_dir
+
+_LOG_FILE    = os.path.join(_root_dir, "vigle_sense.log")
 _MAX_BYTES   = 5 * 1024 * 1024   # 5 MB per log file
 _BACKUP_COUNT = 3                 # keep up to 3 rotated files
 

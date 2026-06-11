@@ -1,19 +1,5 @@
 """
 port_utils.py — Serial port enumeration helpers for Vigle_Sense.
-
-The original Vigle_Sense.py duplicated port-sorting and label-building
-logic across three methods (_get_sorted_ports, _fill_ports,
-_on_refresh_ports).  This module provides a single, tested
-implementation used by all callers.
-
-Usage
------
-    from port_utils import list_ports, fill_combo, auto_assign
-
-    ports = list_ports()          # sorted list of PortInfo objects
-    fill_combo(combo, ports)       # populate a QComboBox
-    cli_i, data_i = auto_assign(ports)  # suggested indices
-
 """
 
 import re

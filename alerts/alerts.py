@@ -3,28 +3,6 @@ alerts.py — Cross-platform audio alerts for Vigle_Sense.
 
 Plays a short beep when a safety event is first detected (rising
 edge only — not every frame — to avoid alarm fatigue).
-
-Supported events
-----------------
-- CHAMBER_BREACH  : person entered a restricted unit
-- MACHINE_PROX    : person dangerously close to a machine
-- ZONE_RESTRICTED : person entered the outer restricted zone
-
-Usage
------
-    from alerts import AlertManager, AlertEvent
-
-    am = AlertManager()
-    am.muted = False          # toggle from a UI checkbox
-
-    # Call on every frame — AlertManager tracks edge internally:
-    am.on_frame(
-        ch_a_breach     = ch_a_breach,
-        ch_b_breach     = ch_b_breach,
-        mach_a_prox     = mach_a_prox,
-        mach_b_prox     = mach_b_prox,
-        any_restricted  = zone_live["restricted"] > 0,
-    )
 """
 
 import platform

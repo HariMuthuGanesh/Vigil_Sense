@@ -1,28 +1,5 @@
 """
 stats_tracker.py — Real-time performance & tracking statistics for Vigle_Sense.
-
-Computes FPS, point-cloud size, and confirmed track count from the
-live radar data stream. These values feed the three StatCard widgets
-that were stubbed as ``None`` in the original application
-(``self.card_fps``, ``self.card_pts``, ``self.card_trk``).
-
-Usage
------
-    from stats_tracker import StatsTracker
-
-    tracker = StatsTracker()
-
-    # Call inside _on_frame_inner each frame:
-    tracker.update(point_count=len(pts), track_count=len(confirmed))
-
-    fps    = tracker.fps          # float
-    points = tracker.last_points  # int
-    tracks = tracker.last_tracks  # int
-
-    # Human-readable strings ready for StatCard.set_value():
-    fps_str    = tracker.fps_str     # e.g. "18.3"
-    points_str = tracker.points_str  # e.g. "47"
-    tracks_str = tracker.tracks_str  # e.g. "3"
 """
 
 import time
