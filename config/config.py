@@ -1,5 +1,5 @@
 """
-config.py — Centralised configuration for Vigle_Sense.
+config.py — Centralised configuration for Vigil_Sense.
 
 All tunable constants live here so they can be found and adjusted
 without scrolling through the main application file.

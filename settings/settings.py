@@ -1,5 +1,5 @@
 """
-settings.py — Persist and restore user preferences for Vigle_Sense.
+settings.py — Persist and restore user preferences for Vigil_Sense.
 
 Saves the operator's settings to ``settings.json`` in the project root.
 """
@@ -19,7 +19,7 @@ else:
 
 _SETTINGS_FILE = os.path.join(_root_dir, "settings.json")
 
-# ── Defaults (mirror the hard-coded values in Vigle_Sense.py) ───
+# ── Defaults (mirror the hard-coded values in Vigil_Sense.py) ───
 _DEFAULTS: dict = {
     # Serial ports
     "cli_port":  "",

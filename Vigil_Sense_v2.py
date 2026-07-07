@@ -1,4 +1,4 @@
-# ── Vigle_Sense v2 — integrated with companion modules ───────────
+# ── Vigil_Sense v2 — integrated with companion modules ───────────
 import sys, os, time, struct, threading, math, platform
 import numpy as np
 import serial
@@ -14,7 +14,7 @@ from settings      import Settings                 # JSON persistence
 from stats_tracker import StatsTracker             # FPS / pts / tracks
 from port_utils    import list_ports, fill_combo, auto_assign  # port utils
 
-_log = get_logger("vigle_sense_v2")
+_log = get_logger("vigil_sense_v2")
 
 # ── Cross-platform font resolver ──────────────────────────────────
 def _mono_font():

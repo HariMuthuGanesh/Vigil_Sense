@@ -1,5 +1,5 @@
 """
-alerts.py — Cross-platform audio alerts for Vigle_Sense.
+alerts.py — Cross-platform audio alerts for Vigil_Sense.
 
 Plays a short beep when a safety event is first detected (rising
 edge only — not every frame — to avoid alarm fatigue).

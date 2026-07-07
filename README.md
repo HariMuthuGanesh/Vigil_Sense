@@ -13,8 +13,8 @@
 
 The system interfaces with a **TI IWR6843AOP 60 GHz mmWave radar** over USB/UART, processes raw TLV binary frames in real-time, and displays multi-target tracking results in an interactive 3D industrial floor plan with animated hazard alerts.
 
-📂 **Main application file:** [`Vigle_Sense_v2.py`](Vigle_Sense_v2.py) (Integrated and Structured version)
-📄 **Original version:** [`Vigle_Sense.py`](Vigle_Sense.py)
+📂 **Main application file:** [`Vigil_Sense_v2.py`](Vigil_Sense_v2.py) (Integrated and Structured version)
+📄 **Original version:** [`Vigil_Sense.py`](Vigil_Sense.py)
 
 ---
 
@@ -89,8 +89,8 @@ Plan View   View             (Front + Side)
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/HariMuthuGanesh/Vigle_Sense.git
-cd Vigle_Sense
+git clone https://github.com/HariMuthuGanesh/Vigil_Sense.git
+cd Vigil_Sense
 ```
 
 ### 2. Create a virtual environment (recommended)
@@ -112,10 +112,10 @@ pip install -r requirements.txt
 ## ▶️ How to Run
 
 ```bash
-python Vigle_Sense_v2.py
+python Vigil_Sense_v2.py
 ```
 
-*Note: The original, standalone version can still be run with `python Vigle_Sense.py`.*
+*Note: The original, standalone version can still be run with `python Vigil_Sense.py`.*
 
 The application opens in **demo mode** immediately (animated synthetic persons visible in Tab 2) so you can explore the UI without hardware.
 
@@ -144,9 +144,9 @@ The application opens in **demo mode** immediately (animated synthetic persons v
 ## 📁 Project Structure
 
 ```
-Vigle_Sense/
-├── Vigle_Sense.py         # Original unmodified application
-├── Vigle_Sense_v2.py      # Upgraded application incorporating all packages
+Vigil_Sense/
+├── Vigil_Sense.py         # Original unmodified application
+├── Vigil_Sense_v2.py      # Upgraded application incorporating all packages
 ├── config/                # Configuration package
 │   ├── __init__.py
 │   └── config.py

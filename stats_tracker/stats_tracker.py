@@ -1,5 +1,5 @@
 """
-stats_tracker.py — Real-time performance & tracking statistics for Vigle_Sense.
+stats_tracker.py — Real-time performance & tracking statistics for Vigil_Sense.
 """
 
 import time

@@ -1,5 +1,5 @@
 """
-port_utils.py — Serial port enumeration helpers for Vigle_Sense.
+port_utils.py — Serial port enumeration helpers for Vigil_Sense.
 """
 
 import re

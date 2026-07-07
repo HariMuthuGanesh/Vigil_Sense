@@ -1,5 +1,5 @@
 """
-logger.py — Structured logging for Vigle_Sense.
+logger.py — Structured logging for Vigil_Sense.
 
 Sets up a rotating file handler so every session's events are
 persisted to disk, in addition to the UI console output.
@@ -16,7 +16,7 @@ if os.path.basename(_my_dir) == "logger":
 else:
     _root_dir = _my_dir
 
-_LOG_FILE    = os.path.join(_root_dir, "vigle_sense.log")
+_LOG_FILE    = os.path.join(_root_dir, "vigil_sense.log")
 _MAX_BYTES   = 5 * 1024 * 1024   # 5 MB per log file
 _BACKUP_COUNT = 3                 # keep up to 3 rotated files
 

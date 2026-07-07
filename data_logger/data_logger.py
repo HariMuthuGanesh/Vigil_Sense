@@ -1,5 +1,5 @@
 """
-data_logger.py — Session CSV data logger for Vigle_Sense.
+data_logger.py — Session CSV data logger for Vigil_Sense.
 
 Records confirmed radar frame metrics to a timestamped CSV file.
 """
